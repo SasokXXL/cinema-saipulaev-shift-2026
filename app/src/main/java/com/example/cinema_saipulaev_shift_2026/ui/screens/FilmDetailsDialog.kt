@@ -34,11 +34,21 @@ private fun getImageUrl(path: String): String {
 @Composable
 fun FilmDetailsDialog(
     film: Film,
-    onDismiss: () -> Unit
+    onDismiss: () -> Unit,
+    onChooseSession: (String) -> Unit
 ) {
     AlertDialog(
         onDismissRequest = onDismiss,
         confirmButton = {
+            TextButton(
+                onClick = {
+                    onChooseSession(film.id)
+                }
+            ) {
+                Text(text = "Выбрать сеанс")
+            }
+        },
+        dismissButton = {
             TextButton(onClick = onDismiss) {
                 Text(text = "Закрыть")
             }
